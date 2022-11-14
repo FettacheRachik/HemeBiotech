@@ -3,52 +3,41 @@ package com.hemebiotech.analytics;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.List;
+
+/*
+ * Read ,List , Count , order Symptoms from an object ISymptomReader
+ */
 
 public class AnalyticsCounter {
-	private static int headacheCount = 0;
-	private static int rashCount = 0;
-	private static int pupilCount = 0;
+	
+	
+	private ISymptomReader reader;
+	
+	/*
+	 * setter and Getter
+	 */
+	public ISymptomReader getReader() {
+		return reader;
+	}
 
-	public static void main(String args[]) throws Exception {
-
-		// Read file with try with ressources
-		try (BufferedReader reader = new BufferedReader(new FileReader("ressources/symptoms.txt"))) {
-			
-			//Line contains symptome from each line of file
-			String line = reader.readLine();
-
-			while (line != null) {
-
-				System.out.println("symptom from file: " + line);
-				if (line.equals("headache")) {
-					headacheCount++;
-					System.out.println("number of headaches: " + headacheCount);
-				}
-
-				else if (line.equals("rush")) {
-					rashCount++;
-				} else if (line.contains("pupils")) {
-					pupilCount++;
-				}
-
-				line = reader.readLine(); // get another symptom
-			}
-		} catch (Exception e) {
-
-			System.err.println(e.getMessage());
-
-		}
-
-		// next generate output write  with try to catch exception
-		try (FileWriter writer = new FileWriter("ressources/result.out")){
-			writer.write("headache: " + headacheCount + "\n");
-			writer.write("rash: " + rashCount + "\n");
-			writer.write("dialated pupils: " + pupilCount + "\n");
-			writer.close();
-			
-		}catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
+	public void setReader(ISymptomReader reader) {
+		this.reader = reader;
 		
 	}
+
+	/**
+	 * Methode qui a partir du fichier contenant les symptomes , va les insérer dans une liste
+	 * @return liste des Symptomes
+	 */
+	public List<String> getListSymptoms () {
+		
+		
+		List <String> listeSymptoms = null;
+		listeSymptoms= this.reader.getSymptoms();
+		return listeSymptoms;
+		
+	}
+
+	
 }
