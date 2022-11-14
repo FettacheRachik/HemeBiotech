@@ -3,6 +3,7 @@ package com.hemebiotech.analytics;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /*
  * Read ,List , Count , order Symptoms from an object ISymptomReader
@@ -55,6 +56,18 @@ public class AnalyticsCounter {
 
 		return mapSymptomes;
 
+	}
+	
+	
+	/**
+	 * Method to class symptoms
+	 * @param mapSymptomes type Map<String,Integer>
+	 * @return TreeMap
+	 */
+	public Map<String, Integer> orderSymptoms(Map<String, Integer> mapSymptomes) {
+
+		Map<String, Integer> orderSymptoms = new TreeMap<String, Integer>(mapSymptomes);
+		return orderSymptoms;
 	}
 
 }

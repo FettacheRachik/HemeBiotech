@@ -28,10 +28,17 @@ public class StartApplication {
 		Map <String,Integer> countSymptoms = analyticsCounter.countSymptoms(listeSymptoms);
 		
 		
-		//Afficher la Map des occurences
-		for(Map.Entry mapSymptoms:countSymptoms.entrySet()){  
-			   System.out.println(mapSymptoms.getKey()+": "+mapSymptoms.getValue()); 
+		
+		//Ordonner les Symptomes
+		Map<String,Integer> orderSymptoms = analyticsCounter.orderSymptoms(countSymptoms);
+				
+				
+		//Afficher la map des symptomes triés
+		for(Map.Entry mapSymptoms:orderSymptoms.entrySet()){  
+			System.out.println(mapSymptoms.getKey()+": "+mapSymptoms.getValue()); 
 		}
+		
+		
 
 	}
 
