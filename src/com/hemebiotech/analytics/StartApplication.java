@@ -33,10 +33,10 @@ public class StartApplication {
 		Map<String,Integer> orderSymptoms = analyticsCounter.orderSymptoms(countSymptoms);
 				
 				
-		//Afficher la map des symptomes triés
-		for(Map.Entry mapSymptoms:orderSymptoms.entrySet()){  
-			System.out.println(mapSymptoms.getKey()+": "+mapSymptoms.getValue()); 
-		}
+		//Ecrire dans un fichier les symptomes
+		ISymptomWrite writer = new WriteSymptomsToFile("ressources/output.txt");
+		analyticsCounter.setWriter(writer);
+		writer.writeSymptoms(orderSymptoms);
 		
 		
 

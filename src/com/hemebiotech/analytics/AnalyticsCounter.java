@@ -13,6 +13,7 @@ public class AnalyticsCounter {
 	
 	
 	private ISymptomReader reader;
+	private ISymptomWrite writer;
 	
 	/*
 	 * setter and Getter
@@ -24,6 +25,16 @@ public class AnalyticsCounter {
 	public void setReader(ISymptomReader reader) {
 		this.reader = reader;
 		
+	}
+	
+	
+
+	public ISymptomWrite getWriter() {
+		return writer;
+	}
+
+	public void setWriter(ISymptomWrite writer) {
+		this.writer = writer;
 	}
 
 	/**
@@ -68,6 +79,16 @@ public class AnalyticsCounter {
 
 		Map<String, Integer> orderSymptoms = new TreeMap<String, Integer>(mapSymptomes);
 		return orderSymptoms;
+	}
+	
+	/**
+	 * Method to writer symptoms with numbers of occurence in a file
+	 * @param mapOrderSymptoms
+	 */
+	public void writeSymptoms (Map <String,Integer> mapOrderSymptoms) {
+		
+		
+		this.writer.writeSymptoms(mapOrderSymptoms);
 	}
 
 }
